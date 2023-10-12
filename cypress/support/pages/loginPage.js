@@ -21,5 +21,21 @@ class SignupLogin {
       return cy.get('[data-qa="signup-button"]');
     },
   };
+  logout = {
+    get logoutButton() {
+      return cy.get('a[href="/logout"]');
+    },
+  };
+  assertions = {
+    get successFulLoginAssertion() {
+      return cy.contains("testerLO");
+    },
+    get incorrectLoginAssertion() {
+      return cy.contains("Your email or password is incorrect!");
+    },
+    get logoutAssertion() {
+      return cy.url();
+    },
+  };
 }
 export default new SignupLogin();
