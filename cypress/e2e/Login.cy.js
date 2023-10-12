@@ -16,4 +16,13 @@ describe("Login Page test", () => {
     SignupLogin.logout.logoutButton.click();
     SignupLogin.assertions.logoutAssertion.should("eq", loginData.loginUrl);
   });
+  it.only("aaa", () => {
+    cy.visit("/");
+    cy.get('div[class="header-middle"] a[href="/products"]').click();
+    cy.get('div[class="features_items"] h2[class="title text-center"]').should(
+      "contain",
+      "All Products"
+    );
+    
+  });
 });
