@@ -1,0 +1,25 @@
+{
+  "name": "automationexercise-project",
+  "version": "1.0.0",
+  "description": "Automationexercise webpage e2e tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Matysmk"
+  },
+  "keywords": [
+    "automation",
+    "tests",
+    "cypress",
+    "e2e",
+    "javascript"
+  ],
+  "author": "Paweł Matysiuk",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.3.1"
+  }
+}

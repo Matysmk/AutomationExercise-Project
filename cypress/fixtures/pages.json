@@ -1,0 +1,7 @@
+{
+    "homePage": "https://automationexercise.com/",
+    "loginPage": "login",
+    "producsPage": "/products",
+    "cartPage": "/view_cart",
+    "contactUsPage": "/contact_us"
+}
