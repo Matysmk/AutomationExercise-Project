@@ -1,4 +1,6 @@
 import SignupLogin from "./pages/loginPage";
+import contactUsPage from "./pages/contactUsPage";
+import homePage from "./pages/homePage";
 
 Cypress.Commands.add("login", (email, password) => {
   cy.visit("/login");
@@ -7,7 +9,18 @@ Cypress.Commands.add("login", (email, password) => {
   SignupLogin.login.loginButton.click();
 });
 
-Cypress.Commands.add("Register and delete account",)
+Cypress.Commands.add("ContactUsForm", (username, email, subject, message) => {
+  const uploadFile = "cypress/fixtures/bananacat.jpg";
+  cy.visit("/contact_us");
+  contactUsPage.form.nameInput.type(username);
+  contactUsPage.form.emailInput.type(email);
+  contactUsPage.form.subjectInput.type(subject);
+  contactUsPage.form.messageInput.type(message);
+  contactUsPage.form.chooseFile(uploadFile);
+  contactUsPage.form.submitButton.click();
+  contactUsPage.assertions.successAssertionMessage.should("be.visible");
+  contactUsPage.form.homeButton.click();
+});
 
 //
 // -- This is a parent command --
