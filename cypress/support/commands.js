@@ -1,5 +1,6 @@
 import SignupLogin from "./pages/loginPage";
 import contactUsPage from "./pages/contactUsPage";
+import TestCases from "./pages/TcPage";
 
 Cypress.Commands.add("login", (email, password) => {
   cy.visit("/login");
@@ -21,6 +22,11 @@ Cypress.Commands.add("ContactUsForm", (username, email, subject, message) => {
   contactUsPage.form.homeButton.click();
 });
 
+Cypress.Commands.add("testCasePage", () => {
+  cy.visit("/");
+  TestCases.nav.testCaseButton.click();
+  TestCases.assertions.verifyTcPage.should("be.visible");
+});
 
 //
 // -- This is a parent command --
