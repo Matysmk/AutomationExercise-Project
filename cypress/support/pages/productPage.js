@@ -46,8 +46,8 @@ class ProductsPage {
       );
     },
     // Checks if searched products are visible on a page and include searched products.
-    searchedProduct(value) {
-      cy.get('div[class="features_items"]').should("contain", value);
+    get searchedProduct() {
+      return cy.get('div[class="features_items"]');
     },
   };
 }

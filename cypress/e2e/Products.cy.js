@@ -12,16 +12,15 @@ describe("Products page tests.", () => {
     productPage.assertions.productInfo.should("be.visible");
   });
   it("Search for a product using Search Bar Input", () => {
-    const input = "Dress";
     cy.visit("/");
     productPage.navigation.productNavButton.click();
     productPage.assertions.allProductText.should("contain", "All Products");
-    productPage.searchBar.searchInputBar.type(input);
+    productPage.searchBar.searchInputBar.type("Dress");
     productPage.searchBar.searchInputButton.click();
     productPage.assertions.searchedProductText.should(
       "contain",
       "Searched Products"
     );
-    productPage.assertions.searchedProduct(input);
+    productPage.assertions.searchedProduct.should("contain", "Dress");
   });
 });
