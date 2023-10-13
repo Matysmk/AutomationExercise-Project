@@ -27,8 +27,8 @@ class SignupLogin {
     },
   };
   assertions = {
-    get successFulLoginAssertion() {
-      return cy.contains("testerLO");
+    loggedInAsAssertion(uName) {
+      return cy.contains(`Logged in as ${uName}`);
     },
     get incorrectLoginAssertion() {
       return cy.contains("Your email or password is incorrect!");
