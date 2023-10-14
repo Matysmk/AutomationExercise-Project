@@ -67,6 +67,8 @@ Cypress.Commands.add("testCasePage", () => {
   TestCases.assertions.verifyTcPage.should("be.visible");
 });
 
+Cypress.Commands.add("Add product to a cart.", () => {});
+
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })

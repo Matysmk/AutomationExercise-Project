@@ -8,6 +8,29 @@ class ProductsPage {
     get viewProductButton() {
       return cy.get('div[class="choose"] a[href="/product_details/2"]');
     },
+    get addedViewCartLink() {
+      return cy.get('p[class="text-center"] a[href="/view_cart"]');
+    },
+    // this button is used to continue shopping after adding a product.
+    get continueShoppingButton() {
+      return cy.get(
+        'div[class="modal-footer"] button[class="btn btn-success close-modal btn-block"]'
+      );
+    },
+  };
+  actions = {
+    hoverOverProduct(product) {
+      return cy.get(
+        `div[class="productinfo text-center"] a[data-product-id="${product}"]`
+      );
+    },
+    addToCart(product) {
+      return cy.get(
+        `div[class="productinfo text-center"] a[data-product-id="${product}"][class="btn btn-default add-to-cart"]`
+      );
+    },
+
+    // This button is used to view a cart after adding a product.
   };
   searchBar = {
     // Finds search input bar on Products page
