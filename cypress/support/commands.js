@@ -1,5 +1,5 @@
 import SignupLogin from "./pages/loginPage";
-import contactUsPage from "./pages/contactUsPage";
+import ContactUs from "./pages/contactUsPage";
 import TestCases from "./pages/TcPage";
 import SignupRegister from "./pages/registrationPage";
 import SignupForm from "./pages/registrationFormPage";
@@ -51,14 +51,14 @@ Cypress.Commands.add("login", (email, password) => {
 Cypress.Commands.add("ContactUsForm", (username, email, subject, message) => {
   const uploadFile = "cypress/fixtures/bananacat.jpg";
   cy.visit("/contact_us");
-  contactUsPage.form.nameInput.type(username);
-  contactUsPage.form.emailInput.type(email);
-  contactUsPage.form.subjectInput.type(subject);
-  contactUsPage.form.messageInput.type(message);
-  contactUsPage.form.chooseFile(uploadFile);
-  contactUsPage.form.submitButton.click();
-  contactUsPage.assertions.successAssertionMessage.should("be.visible");
-  contactUsPage.form.homeButton.click();
+  ContactUs.form.nameInput.type(username);
+  ContactUs.form.emailInput.type(email);
+  ContactUs.form.subjectInput.type(subject);
+  ContactUs.form.messageInput.type(message);
+  ContactUs.form.chooseFile(uploadFile);
+  ContactUs.form.submitButton.click();
+  ContactUs.assertions.successAssertionMessage.should("be.visible");
+  ContactUs.form.homeButton.click();
 });
 
 Cypress.Commands.add("testCasePage", () => {

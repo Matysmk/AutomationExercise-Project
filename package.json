@@ -4,7 +4,8 @@
   "description": "Automationexercise webpage e2e tests",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cypress:runTests": "cypress run",
+    "cypress:openGUI": "cypress open"
   },
   "repository": {
     "type": "git",
