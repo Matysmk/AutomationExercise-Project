@@ -15,6 +15,13 @@ class HomePage {
       return cy.get('ul[class="nav navbar-nav"] i[class="fa fa-trash-o"]');
     },
   };
+  navBar = {
+    get goToCart() {
+      return cy.get(
+        'ul[class="nav navbar-nav"] i[class="fa fa-shopping-cart"]'
+      );
+    },
+  };
 
   assertions = {
     get homeTitle() {

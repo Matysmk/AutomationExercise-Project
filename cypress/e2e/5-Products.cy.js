@@ -1,26 +1,60 @@
-import productPage from "../support/pages/productPage";
+import ProductPage from "../support/pages/productPage";
+import ProductDetails from "../support/pages/productDetailsPage";
 describe("Products page tests.", () => {
   it("Verify All Products and product detail page", () => {
     cy.visit("/");
-    productPage.navigation.productNavButton.click();
-    productPage.assertions.allProductText.should("contain", "All Products");
-    productPage.navigation.viewProductButton.click();
-    productPage.assertions.successfulProductPageLoad.should(
+    ProductPage.navigation.productNavButton.click();
+    ProductPage.assertions.allProductText.should("contain", "All Products");
+    ProductPage.navigation.viewProductButton("2").click();
+    ProductDetails.assertions.successfulProductPageLoad.should(
       "include",
       "Automation Exercise - Product Details"
     );
-    productPage.assertions.productInfo.should("be.visible");
+    ProductDetails.assertions.productInfo.should("be.visible");
   });
   it("Search for a product using Search Bar Input", () => {
     cy.visit("/");
-    productPage.navigation.productNavButton.click();
-    productPage.assertions.allProductText.should("contain", "All Products");
-    productPage.searchBar.searchInputBar.type("Dress");
-    productPage.searchBar.searchInputButton.click();
-    productPage.assertions.searchedProductText.should(
+    ProductPage.navigation.productNavButton.click();
+    ProductPage.assertions.allProductText.should("contain", "All Products");
+    ProductPage.searchBar.searchInputBar.type("Dress");
+    ProductPage.searchBar.searchInputButton.click();
+    ProductPage.assertions.searchedProductText.should(
       "contain",
       "Searched Products"
     );
-    productPage.assertions.searchedProduct.should("contain", "Dress");
+    ProductPage.assertions.searchedProduct.should("contain", "Dress");
+  });
+  it("Views Category Products", () => {
+    cy.visit("/");
+    ProductPage.navigation.productNavButton.click();
+    ProductPage.sideBar.getCategory("#Women").click();
+    ProductPage.sideBar.getsubCategory("2").click();
+    ProductPage.assertions.categoryAssertion("Women - Tops Products");
+    ProductPage.sideBar.getCategory("#Men").click();
+    ProductPage.sideBar.getsubCategory("3").click();
+    ProductPage.assertions.categoryAssertion("Men - Tshirts Products");
+  });
+  it("View & Cart Brand Products", () => {
+    cy.visit("/");
+    ProductPage.navigation.productNavButton.click();
+    ProductPage.sideBar.getBrand("Polo").click();
+    ProductPage.assertions
+      .brandAssertion("Brand - Polo Products")
+      .should("be.visible");
+    ProductPage.sideBar.getBrand("Babyhug").click();
+    ProductPage.assertions
+      .brandAssertion("Brand - Babyhug Products")
+      .should("be.visible");
+  });
+  it("Add review on product", () => {
+    cy.visit("/");
+    ProductPage.navigation.productNavButton.click();
+    ProductPage.navigation.viewProductButton("2").click();
+    ProductDetails.assertions.writeYourReviewAssertion.should("be.visible");
+    ProductDetails.inputs.reviewName.type("Test User");
+    ProductDetails.inputs.reviewEmail.type("testemail@xyz.com");
+    ProductDetails.inputs.reviewMessage.type("Sample review text");
+    ProductDetails.buttons.submitReviewButton.click();
+    ProductDetails.assertions.successfulSubmittedReview.should("be.visible");
   });
 });

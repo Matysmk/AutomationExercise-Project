@@ -5,8 +5,10 @@ class ProductsPage {
       return cy.get('div[class="header-middle"] a[href="/products"]');
     },
     // In products page clicks on 'View Product'
-    get viewProductButton() {
-      return cy.get('div[class="choose"] a[href="/product_details/2"]');
+    viewProductButton(productid) {
+      return cy.get(
+        `div[class="choose"] a[href="/product_details/${productid}"]`
+      );
     },
     get addedViewCartLink() {
       return cy.get('p[class="text-center"] a[href="/view_cart"]');
@@ -47,6 +49,24 @@ class ProductsPage {
     },
   };
 
+  sideBar = {
+    getCategory(value) {
+      return cy.get(
+        `div[class="panel-group category-products"] a[href="${value}"]`
+      );
+    },
+    getsubCategory(id) {
+      return cy.get(
+        `div[class="panel-body"] a[href="/category_products/${id}"]`
+      );
+    },
+    getBrand(brandName) {
+      return cy.get(
+        `div[class="brands-name"] a[href="/brand_products/${brandName}"]`
+      );
+    },
+  };
+
   assertions = {
     // 'All products' text is visible on a page.
     get allProductText() {
@@ -54,15 +74,13 @@ class ProductsPage {
         'div[class="features_items"] h2[class="title text-center"]'
       );
     },
-    // Information that product is visible on a page.
-    get productInfo() {
-      return cy.get(".product-information");
+    categoryAssertion(text) {
+      return cy.get('h2[class="title text-center"]').contains(text);
     },
-    // Choosen product page title assertion.
-    get successfulProductPageLoad() {
-      return cy.title();
+    brandAssertion(text) {
+      return cy.get(`h2[class="title text-center"]`).contains(text);
     },
-    // Searched Product text is visible after using search bar input to find products.
+
     get searchedProductText() {
       return cy.get(
         'div[class="features_items"] h2[class="title text-center"]'

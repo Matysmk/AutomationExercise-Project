@@ -17,5 +17,12 @@ class SignupRegister {
       );
     },
   };
+  assertions = {
+    get registeredEmailError() {
+      return cy
+        .get('form[action="/signup"] p')
+        .contains("Email Address already exist!");
+    },
+  };
 }
 export default new SignupRegister();
