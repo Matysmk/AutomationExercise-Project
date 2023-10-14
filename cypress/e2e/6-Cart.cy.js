@@ -1,6 +1,7 @@
 import Cart from "../support/pages/cartPage";
 import ProductsPage from "../support/pages/productPage";
 import ProductsDetails from "../support/pages/productDetailsPage";
+import HomePage from "../support/pages/homePage";
 
 describe("Cart Page tests", () => {
   it("Adds products to cart.", () => {
@@ -13,7 +14,7 @@ describe("Cart Page tests", () => {
   });
   it("Verifies Product quantity in Cart", () => {
     cy.visit("/");
-    ProductsPage.navigation.productNavButton.click();
+    HomePage.navBar.goToProducts.click();
     ProductsPage.assertions.allProductText.should("contain", "All Products");
     ProductsPage.navigation.viewProductButton("3").click();
     ProductsDetails.assertions.successfulProductPageLoad.should(

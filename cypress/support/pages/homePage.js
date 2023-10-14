@@ -21,6 +21,10 @@ class HomePage {
         'ul[class="nav navbar-nav"] i[class="fa fa-shopping-cart"]'
       );
     },
+    get goToProducts() {
+      return cy.get('div[class="header-middle"] a[href="/products"]');
+    },
+
   };
 
   assertions = {

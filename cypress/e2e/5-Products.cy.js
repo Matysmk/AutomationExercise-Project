@@ -1,9 +1,10 @@
 import ProductPage from "../support/pages/productPage";
 import ProductDetails from "../support/pages/productDetailsPage";
+import HomePage from "../support/pages/homePage";
 describe("Products page tests.", () => {
   it("Verify All Products and product detail page", () => {
     cy.visit("/");
-    ProductPage.navigation.productNavButton.click();
+    HomePage.navBar.goToProducts.click();
     ProductPage.assertions.allProductText.should("contain", "All Products");
     ProductPage.navigation.viewProductButton("2").click();
     ProductDetails.assertions.successfulProductPageLoad.should(
@@ -14,7 +15,7 @@ describe("Products page tests.", () => {
   });
   it("Search for a product using Search Bar Input", () => {
     cy.visit("/");
-    ProductPage.navigation.productNavButton.click();
+    HomePage.navBar.goToProducts.click();
     ProductPage.assertions.allProductText.should("contain", "All Products");
     ProductPage.searchBar.searchInputBar.type("Dress");
     ProductPage.searchBar.searchInputButton.click();
@@ -26,7 +27,7 @@ describe("Products page tests.", () => {
   });
   it("Views Category Products", () => {
     cy.visit("/");
-    ProductPage.navigation.productNavButton.click();
+    HomePage.navBar.goToProducts.click();
     ProductPage.sideBar.getCategory("#Women").click();
     ProductPage.sideBar.getsubCategory("2").click();
     ProductPage.assertions.categoryAssertion("Women - Tops Products");
@@ -36,7 +37,7 @@ describe("Products page tests.", () => {
   });
   it("View & Cart Brand Products", () => {
     cy.visit("/");
-    ProductPage.navigation.productNavButton.click();
+    HomePage.navBar.goToProducts.click();
     ProductPage.sideBar.getBrand("Polo").click();
     ProductPage.assertions
       .brandAssertion("Brand - Polo Products")
@@ -48,7 +49,7 @@ describe("Products page tests.", () => {
   });
   it("Add review on product", () => {
     cy.visit("/");
-    ProductPage.navigation.productNavButton.click();
+    HomePage.navBar.goToProducts.click();
     ProductPage.navigation.viewProductButton("2").click();
     ProductDetails.assertions.writeYourReviewAssertion.should("be.visible");
     ProductDetails.inputs.reviewName.type("Test User");

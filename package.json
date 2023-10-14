@@ -4,7 +4,7 @@
   "description": "Automationexercise webpage e2e tests",
   "main": "index.js",
   "scripts": {
-    "cypress:runTests": "cypress run",
+    "cypress:runTests": "cypress run --browser chrome",
     "cypress:openGUI": "cypress open"
   },
   "repository": {

@@ -1,11 +1,4 @@
 class Cart {
-  navigation = {
-    get cartNav() {
-      return cy.get(
-        'ul[class="nav navbar-nav"] i[class="fa fa-shopping-cart"]'
-      );
-    },
-  };
   buttons = {
     // Removes product from a cart by product id
     deleteProductButton(value) {

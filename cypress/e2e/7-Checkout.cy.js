@@ -24,7 +24,7 @@ describe("Checkout page tests.", () => {
     Cart.assertions.totalAssert.should("not.be.empty");
     Cart.buttons.CheckoutButton.click();
     Checkout.buttons.regLogButton.click();
-    cy.registration("Testemail21225@xd.com", "User1995");
+    cy.registration("Testemail23x5@xd.com", "User1995");
     HomePage.navBar.goToCart.click();
     Cart.buttons.CheckoutButton.click();
     Checkout.assertions.deliveryAddress.should("not.be.empty");
