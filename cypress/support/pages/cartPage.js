@@ -17,15 +17,15 @@ class Cart {
     productVisibility(productNum) {
       return cy.get(`tbody tr[id="product-${productNum}"]`);
     },
-    // check if description field is visible in a cart.
+    // checks if description field is visible in a cart.
     get descriptionAssert() {
       return cy.get('tr[id="product-1"] td[class="cart_description"]');
     },
-    // check if price field is visible in a cart.
+    // checks if price field is visible in a cart.
     get priceAssert() {
       return cy.get('tr[id="product-1"] td[class="cart_price"]');
     },
-    // check if quantity field is visible in a cart.
+    // checks if quantity field is visible in a cart.
     get quantityAssert() {
       return cy.get('tr[id="product-1"] td[class="cart_quantity"]');
     },
@@ -37,7 +37,7 @@ class Cart {
         )
         .contains(quantityValue);
     },
-    // check if total price field is visible in a cart.
+    // checks if total price field is visible in a cart.
     get totalAssert() {
       return cy.get('tr[id="product-1"] td[class="cart_total"]');
     },
