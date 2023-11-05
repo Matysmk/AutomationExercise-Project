@@ -20,4 +20,26 @@ export const registerData = {
   textFragment: "ll QA engineers can use this website for automation practice",
   errorEmailCommunicate: "Address already exist!",
   loginAssertion: "Login to your account",
+
+  randomEmail: generateRandomEmail(),
 };
+export function generateRandomEmail() {
+  const domains = ["gmail.com", "yahoo.com", "hotmail.com", "example.com"];
+  const usernameLength = Math.floor(Math.random() * 10) + 5; // Random username length between 5 and 14 characters
+  let username = "";
+
+  // Generate a random username
+  const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < usernameLength; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    username += characters[randomIndex];
+  }
+
+  // Choose a random domain
+  const randomDomain = domains[Math.floor(Math.random() * domains.length)];
+
+  // Create the email address
+  const email = username + "@" + randomDomain;
+
+  return email;
+}

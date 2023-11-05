@@ -1,9 +1,9 @@
 import SignupRegister from "../support/pages/registrationPage";
 import { registerData } from "../support/data/register-data";
 describe("Register Page tests", () => {
-  it("Entire registration and delete account process.", () => {
+  it.only("Entire registration and delete account process.", () => {
     cy.visit("/login");
-    cy.registerAndDeleteAcc("Test123email@randomxxx.com", "Automation Tester");
+    cy.registerAndDeleteAcc(registerData.randomEmail, "Automation Tester");
   });
   it("acc registration", () => {
     cy.visit("/login");

@@ -6,10 +6,11 @@ import SignupForm from "./pages/registrationFormPage";
 import HomePage from "./pages/homePage";
 import { home } from "../support/data/home-data";
 import ProductsPage from "../support/pages/productPage";
+import { registerData } from "./data/register-data";
 
-Cypress.Commands.add("registerAndDeleteAcc", (email, username) => {
+Cypress.Commands.add("registerAndDeleteAcc", (username) => {
   SignupRegister.signupInputs.nameField.type(username);
-  SignupRegister.signupInputs.emailField.type(email);
+  SignupRegister.signupInputs.emailField.type(registerData.randomEmail);
   SignupRegister.signupButtons.signupBut.click();
   SignupForm.formAssertions.signupFormAssertion.should(
     "contain",
@@ -40,9 +41,9 @@ Cypress.Commands.add("registerAndDeleteAcc", (email, username) => {
   SignupForm.formButtons.continueBut.click();
   HomePage.assertions.homeTitle.should("eq", home.homeUrl);
 });
-Cypress.Commands.add("registration", (email, username) => {
+Cypress.Commands.add("registration", (username) => {
   SignupRegister.signupInputs.nameField.type(username);
-  SignupRegister.signupInputs.emailField.type(email);
+  SignupRegister.signupInputs.emailField.type(registerData.randomEmail);
   SignupRegister.signupButtons.signupBut.click();
   SignupForm.formAssertions.signupFormAssertion.should(
     "contain",

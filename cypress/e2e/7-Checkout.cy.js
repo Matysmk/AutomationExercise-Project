@@ -1,3 +1,4 @@
+import { registerData } from "../support/data/register-data";
 import Cart from "../support/pages/cartPage";
 import Checkout from "../support/pages/checkoutPage";
 import HomePage from "../support/pages/homePage";
@@ -5,7 +6,7 @@ import Payment from "../support/pages/paymentPage";
 describe("Checkout page tests.", () => {
   it("Verifies address details in checkout page", () => {
     cy.visit("/login");
-    cy.registration("Test111emailxx5x@xsss.com", "UserLO1995");
+    cy.registration(registerData.randomEmail, "UserLO1995");
     cy.addSingleProductViewCart("3");
     Cart.assertions.descriptionAssert.should("not.be.empty");
     Cart.assertions.priceAssert.should("not.be.empty");
