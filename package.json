@@ -4,8 +4,8 @@
   "description": "Automationexercise webpage e2e tests",
   "main": "index.js",
   "scripts": {
-    "cypress:runTests": "cypress run --browser chrome",
-    "cypress:openGUI": "cypress open"
+    "runTests": "cypress run --headless --browser chrome",
+    "openGUI": "cypress open"
   },
   "repository": {
     "type": "git",
