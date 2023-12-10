@@ -8,6 +8,57 @@ import { home } from "../support/data/home-data";
 import ProductsPage from "../support/pages/productPage";
 import { registerData } from "./data/register-data";
 
+Cypress.Commands.add("deleteAccount", () => {
+  HomePage.actions.deleteAccount.click();
+  HomePage.assertions.deletedAccountAssertion.should("be.visible");
+  SignupForm.formButtons.continueBut.click();
+  HomePage.assertions.homeTitle.should("eq", home.homeUrl);
+});
+
+Cypress.Commands.add("login", (email, password) => {
+  cy.visit("/login");
+  SignupLogin.login.uEmail.type(email);
+  SignupLogin.login.uPassword.type(password);
+  SignupLogin.login.loginButton.click();
+});
+
+Cypress.Commands.add("ContactUsForm", (username, email, subject, message) => {
+  const uploadFile = "cypress/fixtures/bananacat.jpg";
+  cy.visit("/contact_us");
+  ContactUs.form.nameInput.type(username);
+  ContactUs.form.emailInput.type(email);
+  ContactUs.form.subjectInput.type(subject);
+  ContactUs.form.messageInput.type(message);
+  ContactUs.form.chooseFile(uploadFile);
+  ContactUs.form.submitButton.click();
+  ContactUs.assertions.successAssertionMessage.should("be.visible");
+  ContactUs.form.homeButton.click();
+});
+
+Cypress.Commands.add("testCasePage", () => {
+  cy.visit("/");
+  TestCases.nav.testCaseButton.click();
+  TestCases.assertions.verifyTcPage.should("be.visible");
+});
+
+// Adds single product and goes to a cart.
+Cypress.Commands.add("addSingleProductViewCart", (product1) => {
+  cy.visit("/products");
+  ProductsPage.actions.hoverOverProduct(product1).trigger("mouseover");
+  ProductsPage.actions.addToCart(product1).click();
+  cy.wait(1000);
+  ProductsPage.navigation.addedViewCartLink.click();
+});
+
+// Adds product to a cart and continues shopping
+Cypress.Commands.add("addSingleProductContinue", (product1) => {
+  cy.visit("/products");
+  ProductsPage.actions.hoverOverProduct(product1).trigger("mouseover");
+  ProductsPage.actions.addToCart(product1).click();
+  cy.wait(1000);
+  ProductsPage.navigation.continueShoppingButton.click();
+});
+
 Cypress.Commands.add("registerAndDeleteAcc", (username) => {
   SignupRegister.signupInputs.nameField.type(username);
   SignupRegister.signupInputs.emailField.type(registerData.randomEmail);
@@ -70,71 +121,3 @@ Cypress.Commands.add("registration", (username) => {
   SignupForm.formButtons.continueBut.click();
   SignupLogin.assertions.loggedInAsAssertion(username).should("be.visible");
 });
-Cypress.Commands.add("deleteAccount", () => {
-  HomePage.actions.deleteAccount.click();
-  HomePage.assertions.deletedAccountAssertion.should("be.visible");
-  SignupForm.formButtons.continueBut.click();
-  HomePage.assertions.homeTitle.should("eq", home.homeUrl);
-});
-
-Cypress.Commands.add("login", (email, password) => {
-  cy.visit("/login");
-  SignupLogin.login.uEmail.type(email);
-  SignupLogin.login.uPassword.type(password);
-  SignupLogin.login.loginButton.click();
-});
-
-Cypress.Commands.add("ContactUsForm", (username, email, subject, message) => {
-  const uploadFile = "cypress/fixtures/bananacat.jpg";
-  cy.visit("/contact_us");
-  ContactUs.form.nameInput.type(username);
-  ContactUs.form.emailInput.type(email);
-  ContactUs.form.subjectInput.type(subject);
-  ContactUs.form.messageInput.type(message);
-  ContactUs.form.chooseFile(uploadFile);
-  ContactUs.form.submitButton.click();
-  ContactUs.assertions.successAssertionMessage.should("be.visible");
-  ContactUs.form.homeButton.click();
-});
-
-Cypress.Commands.add("testCasePage", () => {
-  cy.visit("/");
-  TestCases.nav.testCaseButton.click();
-  TestCases.assertions.verifyTcPage.should("be.visible");
-});
-
-// Adds single product and goes to a cart.
-Cypress.Commands.add("addSingleProductViewCart", (product1) => {
-  cy.visit("/products");
-  ProductsPage.actions.hoverOverProduct(product1).trigger("mouseover");
-  ProductsPage.actions.addToCart(product1).click();
-  cy.wait(1000);
-  ProductsPage.navigation.addedViewCartLink.click();
-});
-
-// Adds product to a cart and continues shopping
-Cypress.Commands.add("addSingleProductContinue", (product1) => {
-  cy.visit("/products");
-  ProductsPage.actions.hoverOverProduct(product1).trigger("mouseover");
-  ProductsPage.actions.addToCart(product1).click();
-  cy.wait(1000);
-  ProductsPage.navigation.continueShoppingButton.click();
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
