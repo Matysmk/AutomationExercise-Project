@@ -1,6 +1,7 @@
 import ProductPage from "../support/pages/productPage";
 import ProductDetails from "../support/pages/productDetailsPage";
 import HomePage from "../support/pages/homePage";
+
 describe("Products page tests.", () => {
   it("Verify All Products and product detail page", () => {
     cy.visit("/");
