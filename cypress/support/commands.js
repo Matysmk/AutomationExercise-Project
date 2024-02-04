@@ -9,6 +9,7 @@ import ProductsPage from "../support/pages/productPage";
 import { registerData } from "./data/register-data";
 import Cart from "./pages/cartPage";
 import Payment from "./pages/paymentPage";
+import Checkout from "./pages/checkoutPage";
 
 Cypress.Commands.add("deleteAccount", () => {
   HomePage.actions.deleteAccount.click();
@@ -67,6 +68,12 @@ Cypress.Commands.add("cartAssertions", () => {
   Cart.assertions.priceAssert.should("not.be.empty");
   Cart.assertions.quantityAssert.should("not.be.empty");
   Cart.assertions.totalAssert.should("not.be.empty");
+});
+
+// Checkout assertions.
+Cypress.Commands.add("checkoutAssertions", () => {
+  Checkout.assertions.deliveryAddress.should("not.be.empty");
+  Checkout.assertions.billingAddress.should("not.be.empty");
 });
 
 // Fills in all payment options and checks assertions.

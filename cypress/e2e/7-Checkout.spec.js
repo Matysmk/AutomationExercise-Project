@@ -10,8 +10,7 @@ describe("Checkout page tests.", () => {
     cy.addSingleProductViewCart("3");
     cy.cartAssertions();
     Cart.buttons.CheckoutButton.click();
-    Checkout.assertions.deliveryAddress.should("not.be.empty");
-    Checkout.assertions.billingAddress.should("not.be.empty");
+    cy.checkoutAssertions();
     cy.deleteAccount();
   });
   it("Downloads Invoice after purchase order", () => {
@@ -22,8 +21,7 @@ describe("Checkout page tests.", () => {
     cy.registration("Testemail23x5@xd.com", "User1995");
     HomePage.navBar.goToCart.click();
     Cart.buttons.CheckoutButton.click();
-    Checkout.assertions.deliveryAddress.should("not.be.empty");
-    Checkout.assertions.billingAddress.should("not.be.empty");
+    cy.checkoutAssertions();
     Checkout.inputs.commentOrderArea.type("Type any comment about order here.");
     Checkout.buttons.placeOrderButton.click();
     cy.paymentForm();
