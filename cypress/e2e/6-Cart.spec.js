@@ -7,10 +7,7 @@ describe("Cart Page tests", () => {
   it("Adds products to cart.", () => {
     cy.addSingleProductContinue("2");
     cy.addSingleProductViewCart("3");
-    Cart.assertions.descriptionAssert.should("not.be.empty");
-    Cart.assertions.priceAssert.should("not.be.empty");
-    Cart.assertions.quantityAssert.should("not.be.empty");
-    Cart.assertions.totalAssert.should("not.be.empty");
+    cy.cartAssertions();
   });
   it("Verifies Product quantity in Cart", () => {
     cy.visit("/");

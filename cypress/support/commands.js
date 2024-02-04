@@ -7,6 +7,8 @@ import HomePage from "./pages/homePage";
 import { home } from "../support/data/home-data";
 import ProductsPage from "../support/pages/productPage";
 import { registerData } from "./data/register-data";
+import Cart from "./pages/cartPage";
+import Payment from "./pages/paymentPage";
 
 Cypress.Commands.add("deleteAccount", () => {
   HomePage.actions.deleteAccount.click();
@@ -57,6 +59,28 @@ Cypress.Commands.add("addSingleProductContinue", (product1) => {
   ProductsPage.actions.addToCart(product1).click();
   cy.wait(1000);
   ProductsPage.navigation.continueShoppingButton.click();
+});
+
+// Cart assertions.
+Cypress.Commands.add("cartAssertions", () => {
+  Cart.assertions.descriptionAssert.should("not.be.empty");
+  Cart.assertions.priceAssert.should("not.be.empty");
+  Cart.assertions.quantityAssert.should("not.be.empty");
+  Cart.assertions.totalAssert.should("not.be.empty");
+});
+
+// Fills in all payment options and checks assertions.
+Cypress.Commands.add("paymentForm", () => {
+  Payment.assertions.paymentPageCheck.should("be.visible");
+  Payment.inputs.nameOnCardInput.type("Test User");
+  Payment.inputs.cardNumberInput.type("1234567890");
+  Payment.inputs.cvcInput.type("333");
+  Payment.inputs.expireMonthInput.type("10");
+  Payment.inputs.expireMonthYear.type("2025");
+  Payment.buttons.payAndConfirmOrderButton.click();
+  Payment.assertions.orderPlacedMessage.should("be.visible");
+  Payment.assertions.downloadInvoiceButtonAssertion.should("be.visible");
+  Payment.buttons.continueButton.click();
 });
 
 Cypress.Commands.add("registerAndDeleteAcc", (username) => {
